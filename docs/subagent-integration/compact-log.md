@@ -1,0 +1,3 @@
+- [2026-04-05 06:55:10] Compact triggered: test
+- [2026-04-05 07:00:58] Compact triggered: manual
+- [2026-04-05 07:03:46] Compact triggered: manual

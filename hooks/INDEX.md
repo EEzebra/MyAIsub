@@ -1,6 +1,6 @@
 ---
 name: hooks-index
-version: 2.0
+version: 2.1
 description: |
   Hook 事件驱动机制，基于 CodeBuddy 工具生命周期实现细粒度条件触发。
   采用退出码协议控制流程走向，结合声明式规则实现自动化。
@@ -21,6 +21,9 @@ description: |
 | `PreToolUse` | 工具调用前 | 参数校验、权限检查、安全拦截 |
 | `PostToolUse` | 工具调用后 | 结果校验、副作用检测 |
 | `Stop` | 会话结束时 | 日志压缩、评分、清理 |
+| `SubagentStop` | 子代理结束时 | 结果聚合、置信度评估 |
+| `PreCompact` | 上下文压缩前 | 保留关键信息 |
+| `SessionEnd` | 会话结束时 | 保存状态、持久化环境变量 |
 | `ArchitectureChange` | 架构变更请求时 | 强制架构审核 |
 
 ## 退出码协议
@@ -39,15 +42,18 @@ description: |
 
 | Hook 名称 | 事件 | 执行脚本 | 用途 | 状态 |
 |-----------|------|----------|------|------|
-| session-init | `SessionStart` | `hooks/session-init.sh` | 加载上下文、检查环境完整性 | 待建设 |
+| session-init | `SessionStart` | `hooks/session-init.sh` | 加载上下文、检查环境完整性 | 已建设 |
 | intent-classify | `UserPromptSubmit` | `hooks/intent-classify.sh` | 预判用户意图，推荐智能体 | 待建设 |
 | session-end | `Stop` | `hooks/session-end.sh` | 触发日志压缩、会话评分 | 待建设 |
+| session-state | `SessionEnd` | `hooks/session-state.sh` | 保存会话状态、持久化环境变量 | 已建设 |
+| subagent-aggregate | `SubagentStop` | `hooks/subagent-aggregate.sh` | 结果聚合、置信度评估 | 已建设 |
+| pre-compact | `PreCompact` | `hooks/pre-compact.sh` | 压缩前保留关键决策和信息 | 已建设 |
 
 ### 安全监控类
 
 | Hook 名称 | 事件 | 执行脚本 | 用途 | 状态 |
 |-----------|------|----------|------|------|
-| security-check | `PreToolUse` | `hooks/security-check.sh` | 检测安全风险模式，高风险返回退出码 2 | 待建设 |
+| security-check | `PreToolUse` | `hooks/security-check.sh` | 检测安全风险模式，高风险返回退出码 2 | 已建设 |
 | command-validate | `PreToolUse` | `hooks/command-validate.sh` | 校验命令参数，防止误操作 | 待建设 |
 | post-write-verify | `PostToolUse` | `hooks/post-write-verify.sh` | 文件写入后检查副作用 | 待建设 |
 
@@ -57,6 +63,12 @@ description: |
 |-----------|------|----------|------|------|
 | architect-review | `ArchitectureChange` | `hooks/architect-review.sh` | 强制调用架构师智能体审核 | 待建设 |
 | arch-changelog | `PostToolUse` | `hooks/arch-changelog.sh` | 架构变更后自动记录变更日志 | 待建设 |
+
+### Ralph Loop 类
+
+| Hook 名称 | 事件 | 执行脚本 | 用途 | 状态 |
+|-----------|------|----------|------|------|
+| ralph-loop-stop | `Stop` | `hooks/ralph-loop-stop.sh` | 阻止停止，自引用循环 | 已建设 |
 
 ## 安全监控规则
 
