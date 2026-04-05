@@ -20,6 +20,8 @@
 | 低风险 | 扩展 Hooks 索引（新增 3 种事件类型） | hooks/INDEX.md | 用户 + planner | tester |
 | 中风险 | 移植 Ralph Loop（命令 + 脚本 + Stop Hook） | .claude/, hooks/ | 用户 + planner | tester |
 | 低风险 | 新增 PreCompact Hook（对话压缩前保留信息） | hooks/ | 用户 + planner | tester |
+| 低风险 | 新增 tester 规则文件（测试决策流程 + 动态测试规范） | agents/tester/ | 用户 | — |
+| 低风险 | 修复 ralph-loop-stop.sh 使用 CODEBUDDY_PROJECT_DIR | hooks/ | 用户 | — |
 
 ### 2026-04-03
 | 风险等级 | 变更描述 | 影响范围 | 决策者 | 审核者 |
