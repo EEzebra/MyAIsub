@@ -1,0 +1,105 @@
+# MyAI Source Map
+# MyAI 全局地图文件 - 快速定位项目结构
+
+## 项目概览
+| 属性 | 值 |
+|------|-----|
+| 项目名称 | MyAI |
+| 项目定位 | AI 辅助开发环境 |
+| 核心能力 | 智能体协作 + 命令集 + 知识库 + 规则约束 + 技能扩展 + Hook 事件驱动 |
+| 运行环境 | CodeBuddy |
+| 版本 | v2.0（已集成 Claude Code 最佳实践） |
+
+## 目录索引
+
+| 目录 | 用途 | 状态 |
+|------|------|------|
+| `agents/` | 智能体定义（planner/coder/tester/architect/maintainer）— 含 YAML Frontmatter | 已完成 |
+| `commons/` | 命令集（集中存放命令脚本） | 框架已建 |
+| `docs/` | 知识库（领域知识、入口文件、地图文件、变更日志） | 已完成 |
+| `hooks/` | 事件驱动 Hook（v2.0：细粒度事件 + 退出码协议） | 已完成 |
+| `rules/` | 规则（AI 规则 + 项目规则 + Frontmatter 标准） | 已完成 |
+| `skills/` | 技能归档（19 个技能） | 已有 |
+| `spec/` | 场景流程（feature-dev / project-init / bug-fix / skill-develop） | 已完成 |
+
+## 智能体索引
+
+| 智能体 | 代号 | 路径 | 角色 | 工具（最小权限） |
+|--------|------|------|------|-----------------|
+| planner | 魔术师 | `agents/planner/` | 任务指挥中枢 | read/write/list/search/task/skill |
+| coder | 战车 | `agents/coder/` | 代码执行引擎 | read/write/lint/execute/skill/search |
+| tester | 正义 | `agents/tester/` | 质量守卫者 | read/list/search/lint/execute/task |
+| architect | 皇帝 | `agents/architect/` | 核心守门人 + 架构设计者 | read/write/list/search/task |
+| maintainer | 星星 | `agents/maintainer/` | 用户体验引擎 | read/write/list/search/memory |
+
+## 智能体协作链路
+```
+用户 → planner(调度) → coder(编码) → architect(架构审核) → tester(并行验证) → maintainer(评分) → 完成
+         ↑                              ↓                    ↓
+         └── 方案选择 ←── 3方案设计 ←────┘                    │
+                                                              └── 置信度过滤
+```
+
+## Hook 事件索引
+
+| 事件 | Hook | 用途 |
+|------|------|------|
+| SessionStart | session-init | 环境初始化 |
+| UserPromptSubmit | intent-classify | 意图预判 |
+| PreToolUse | security-check | 安全拦截（9种模式） |
+| PreToolUse | command-validate | 命令参数校验 |
+| PostToolUse | post-write-verify | 文件写入后验证 |
+| ArchitectureChange | architect-review | 架构审核强制触发 |
+| PostToolUse | arch-changelog | 架构变更日志记录 |
+| Stop | session-end | 日志压缩 + 会话评分 |
+
+## 技能索引（skills/）
+
+| 技能 | 路径 | 功能 |
+|------|------|------|
+| algorithmic-art | `skills/algorithmic-art/` | 算法艺术生成 |
+| brand-guidelines | `skills/brand-guidelines/` | 品牌指南创建 |
+| canvas-design | `skills/canvas-design/` | Canvas 设计 |
+| claude-api | `skills/claude-api/` | Claude API 调用 |
+| doc-coauthoring | `skills/doc-coauthoring/` | 文档协作 |
+| docx | `skills/docx/` | Word 文档处理 |
+| frontend-design | `skills/frontend-design/` | 前端设计 |
+| internal-comms | `skills/internal-comms/` | 内部沟通 |
+| mcp-builder | `skills/mcp-builder/` | MCP 构建器 |
+| pdf | `skills/pdf/` | PDF 处理 |
+| planning-with-files | `skills/planning-with-files/` | 文件规划管理 |
+| pptx | `skills/pptx/` | PPT 演示文稿 |
+| skill-creator | `skills/skill-creator/` | 技能创建器 |
+| slack-gif-creator | `skills/slack-gif-creator/` | Slack GIF 创建 |
+| theme-factory | `skills/theme-factory/` | 主题工厂 |
+| web-artifacts-builder | `skills/web-artifacts-builder/` | Web 构件生成 |
+| webapp-testing | `skills/webapp-testing/` | Web 应用测试 |
+| xlsx | `skills/xlsx/` | Excel 表格处理 |
+
+## 场景流程索引（spec/）
+
+| 场景 | 路径 | 阶段数 | 确认门 |
+|------|------|--------|--------|
+| 特性开发 | `spec/feature-dev.md` | 7 阶段 | Phase 3 + Phase 4 + Phase 5 |
+| 新项目初始化 | `spec/project-init.md` | 4 阶段 | — |
+| Bug 修复 | `spec/bug-fix.md` | 4 阶段 | — |
+| 技能开发 | `spec/skill-develop.md` | 5 阶段 | — |
+
+## 入口索引（docs/entry/）
+
+| 入口文件 | 用途 | 状态 |
+|----------|------|------|
+| `README.md` | 入口文件夹索引 | 已完成 |
+| `PROJECT.md` | AI 助手入口配置（核心规则与项目结构总览） | 已完成 |
+| `setup.sh` | 环境初始化脚本（目录检查 + Hook 权限） | 已完成 |
+| `QUICK-START.md` | 快速开始指南（智能体、流程、安全速查） | 已完成 |
+
+## 知识库索引（docs/）
+
+| 文件 | 用途 | 状态 |
+|------|------|------|
+| `source.map` | MyAI 地图文件（本文件） | 已更新 |
+| `arch-changelog.md` | 架构变更日志 | 已创建 |
+| `task_plan.md` | 任务规划 | 已创建 |
+| `findings.md` | 调研发现 | 已创建 |
+| `progress.md` | 进度日志 | 已更新 |
