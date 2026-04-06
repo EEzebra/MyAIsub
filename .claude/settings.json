@@ -1,0 +1,116 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CODEBUDDY_PROJECT_DIR\"/hooks/session-init.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CODEBUDDY_PROJECT_DIR\"/hooks/session-init.sh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CODEBUDDY_PROJECT_DIR\"/hooks/intent-classify.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CODEBUDDY_PROJECT_DIR\"/hooks/security-check.sh \"$CODEBUDDY_FILE_PATH\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CODEBUDDY_PROJECT_DIR\"/hooks/arch-changelog.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CODEBUDDY_PROJECT_DIR\"/hooks/session-end.sh"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CODEBUDDY_PROJECT_DIR\"/hooks/subagent-aggregate.sh"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "auto",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CODEBUDDY_PROJECT_DIR\"/hooks/pre-compact.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "manual",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CODEBUDDY_PROJECT_DIR\"/hooks/pre-compact.sh"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "logout",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CODEBUDDY_PROJECT_DIR\"/hooks/session-state.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CODEBUDDY_PROJECT_DIR\"/hooks/session-state.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

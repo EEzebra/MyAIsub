@@ -43,8 +43,8 @@ description: |
 | Hook 名称 | 事件 | 执行脚本 | 用途 | 状态 |
 |-----------|------|----------|------|------|
 | session-init | `SessionStart` | `hooks/session-init.sh` | 加载上下文、检查环境完整性 | 已建设 |
-| intent-classify | `UserPromptSubmit` | `hooks/intent-classify.sh` | 预判用户意图，推荐智能体 | 待建设 |
-| session-end | `Stop` | `hooks/session-end.sh` | 触发日志压缩、会话评分 | 待建设 |
+| intent-classify | `UserPromptSubmit` | `hooks/intent-classify.sh` | 预判用户意图，推荐智能体 | 已建设 |
+| session-end | `Stop` | `hooks/session-end.sh` | 触发日志压缩、会话评分 | 已建设 |
 | session-state | `SessionEnd` | `hooks/session-state.sh` | 保存会话状态、持久化环境变量 | 已建设 |
 | subagent-aggregate | `SubagentStop` | `hooks/subagent-aggregate.sh` | 结果聚合、置信度评估 | 已建设 |
 | pre-compact | `PreCompact` | `hooks/pre-compact.sh` | 压缩前保留关键决策和信息 | 已建设 |
@@ -61,8 +61,10 @@ description: |
 
 | Hook 名称 | 事件 | 执行脚本 | 用途 | 状态 |
 |-----------|------|----------|------|------|
-| architect-review | `ArchitectureChange` | `hooks/architect-review.sh` | 强制调用架构师智能体审核 | 待建设 |
-| arch-changelog | `PostToolUse` | `hooks/arch-changelog.sh` | 架构变更后自动记录变更日志 | 待建设 |
+| architect-review | `PostToolUse` (内部调用) | `hooks/architect-review.sh` | 强制调用架构师智能体审核 | 已建设 |
+| arch-changelog | `PostToolUse` | `hooks/arch-changelog.sh` | 架构变更后自动记录变更日志，敏感变更触发审核 | 已建设 |
+
+> **注意**: `ArchitectureChange` 不是 CodeBuddy 标准事件。架构审核通过 `arch-changelog.sh` 检测敏感文件变更后，内部调用 `architect-review.sh` 实现。
 
 ### Ralph Loop 类
 

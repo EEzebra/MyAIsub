@@ -1,0 +1,13 @@
+# Claude Code 临时文件
+.claude/session.env
+.claude/logs/
+.claude/stats/
+
+# 编辑器
+*.swp
+*.swo
+*~
+
+# 系统
+.DS_Store
+Thumbs.db
