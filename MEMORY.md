@@ -39,7 +39,24 @@
 
 ## 待办任务
 
-*暂无*
+### 下次会话: 测试完整的 Agent 协作流程
+
+**目标**: 验证 `planner → coder → architect → tester → maintainer` 协作流程
+
+**测试场景建议**:
+1. 提交一个复杂任务（如"实现用户认证模块"）
+2. 验证 intent-classify 是否正确推荐 planner
+3. 验证 planner 是否正确拆解任务并调度其他 agent
+4. 验证 coder 实现后是否触发 arch-changelog
+5. 验证 tester 是否正确验证结果
+6. 验证 maintainer 是否正确总结和记录
+
+**关键检查点**:
+- [ ] UserPromptSubmit → intent-classify 自动触发
+- [ ] Planner 任务拆解和 agent 调度
+- [ ] PostToolUse → arch-changelog 敏感文件检测
+- [ ] Tester 并行验证和置信度评估
+- [ ] Maintainer 总结和 git 提交流程
 
 ---
 
