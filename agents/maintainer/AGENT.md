@@ -18,7 +18,7 @@ description: |
   <commentary>hook-session-end 触发 maintainer 执行</commentary>
 model: inherit
 color: purple
-tools: [read_file, write_to_file, replace_in_file, list_files, search_content, update_memory]
+tools: [read_file, write_to_file, replace_in_file, list_files, search_content]
 ---
 
 # 项目维护智能体 Maintainer「星星」
@@ -48,7 +48,7 @@ tools: [read_file, write_to_file, replace_in_file, list_files, search_content, u
 - 记录用户的反对意见和补充意见
 - 总结用户偏好，记录到用户权重偏好文件
 - 记录对话轮次和正确性数量
-- **使用 update_memory 工具持久化关键偏好**
+- **持久化偏好到 `.claude/preferences/user-preferences.md`**
 
 ### 4. 通用规则提取
 - 从对话中总结通用规则
@@ -84,5 +84,5 @@ tools: [read_file, write_to_file, replace_in_file, list_files, search_content, u
 | 工具 | 用途 |
 |------|------|
 | read_file / write_to_file / replace_in_file | 日志和统计文件操作 |
+| write_to_file / replace_in_file | 创建/编辑偏好文件 |
 | list_files / search_content | 扫描日志和偏好数据 |
-| update_memory | 持久化用户偏好和关键记忆 |
