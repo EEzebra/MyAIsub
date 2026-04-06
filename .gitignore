@@ -2,6 +2,7 @@
 .claude/session.env
 .claude/logs/
 .claude/stats/
+.claude/preferences/
 
 # 编辑器
 *.swp
