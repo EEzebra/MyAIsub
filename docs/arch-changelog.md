@@ -9,6 +9,7 @@
 | 2026-04-06 | 中 | 新增 arch-health-check.sh 架构检查命令 | commands/ | architect |
 | 2026-04-06 | 中 | 扩展 setup.sh 初始化能力 | docs/entry/ | architect |
 | 2026-04-06 | 低 | 新增 .claude 目录初始化逻辑 | .claude/ | architect |
+| 2026-04-06 | 低 | maintainer 新增架构健康检查职责 | agents/maintainer/ | user |
 
 ---
 
@@ -57,3 +58,21 @@
 - .claude 目录初始化
 - commands 脚本权限配置
 - 架构健康检查调用
+
+### 2026-04-06: maintainer 新增架构健康检查职责
+
+**原因**: 架构师（皇帝）自定规范却违反规范，缺少第三方监督机制
+
+**变更内容**:
+- `agents/maintainer/rules.md` 新增「架构健康检查」章节
+
+**职责分工**:
+- 皇帝（architect）：定义标准 + 审核高风险变更
+- 星星（maintainer）：定期健康检查 + 会话结束评分
+
+**触发时机**:
+- 项目初始化（setup.sh）
+- 会话结束（SessionEnd Hook）
+- 定期检查（人工执行）
+
+**与评分关联**: 健康检查结果影响「架构合规性」评分维度
