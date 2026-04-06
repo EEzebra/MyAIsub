@@ -1,36 +1,59 @@
 # 架构变更日志
 
-记录所有 MyAI 架构变更，无论风险等级。
+记录 MyAI 项目的架构变更历史。
 
-## 格式
-```
-[日期] [风险等级] [变更描述] [影响范围] [决策者] [审核者]
-```
+| 日期 | 风险等级 | 变更描述 | 影响范围 | 决策者 |
+|------|----------|----------|----------|--------|
+| 2026-04-06 | 高 | commons/ 重命名为 commands/ | 目录结构、引用文件 | user |
+| 2026-04-06 | 中 | 补齐所有 Agent 的 rules.md | agents/* | architect |
+| 2026-04-06 | 中 | 新增 arch-health-check.sh 架构检查命令 | commands/ | architect |
+| 2026-04-06 | 中 | 扩展 setup.sh 初始化能力 | docs/entry/ | architect |
+| 2026-04-06 | 低 | 新增 .claude 目录初始化逻辑 | .claude/ | architect |
 
-## 变更记录
+---
 
-### 2026-04-05
-| 风险等级 | 变更描述 | 影响范围 | 决策者 | 审核者 |
-|----------|----------|----------|--------|--------|
-| 中高风险 | SubAgent 功能整合项目启动（方案 C） | 全局 | 用户 + architect | architect |
-| 低风险 | 新增 SessionStart Hook（session-init.sh） | hooks/ | 用户 + planner | tester |
-| 低风险 | 新增 SessionEnd Hook（session-state.sh） | hooks/ | 用户 + planner | tester |
-| 低风险 | 新增 SubagentStop Hook（subagent-aggregate.sh） | hooks/ | 用户 + planner | tester |
-| 中风险 | 新增 coordinator Agent（教皇） | agents/ | 用户确认 | architect |
-| 低风险 | 扩展 Hooks 索引（新增 3 种事件类型） | hooks/INDEX.md | 用户 + planner | tester |
-| 中风险 | 移植 Ralph Loop（命令 + 脚本 + Stop Hook） | .claude/, hooks/ | 用户 + planner | tester |
-| 低风险 | 新增 PreCompact Hook（对话压缩前保留信息） | hooks/ | 用户 + planner | tester |
-| 低风险 | 新增 tester 规则文件（测试决策流程 + 动态测试规范） | agents/tester/ | 用户 | — |
-| 低风险 | 修复 ralph-loop-stop.sh 使用 CODEBUDDY_PROJECT_DIR | hooks/ | 用户 | — |
+## 变更详情
 
-### 2026-04-03
-| 风险等级 | 变更描述 | 影响范围 | 决策者 | 审核者 |
-|----------|----------|----------|--------|--------|
-| 低风险 | 创建初始项目骨架（8 目录 + 文件） | 全局 | 用户 + planner | — |
-| 低风险 | 升级 AGENT.md 增加 YAML Frontmatter | agents/ | 用户 + planner | — |
-| 低风险 | 升级 hooks 体系为事件驱动 + 退出码协议 | hooks/ | 用户 + planner | — |
-| 低风险 | 新增安全监控 Hook（security-check.sh） | hooks/ | 用户 + planner | — |
-| 低风险 | 新增 feature-dev 场景流程（7 阶段） | spec/ | 用户 + planner | — |
-| 低风险 | 新增 architect 多方案设计能力 | agents/architect/ | 用户 + planner | — |
-| 低风险 | 新增 tester 并行验证 + 置信度过滤 | agents/tester/ | 用户 + planner | — |
-| 低风险 | 新增 maintainer 5 维度评分体系 | agents/maintainer/ | 用户 + planner | — |
+### 2026-04-06: commons 重命名为 commands
+
+**原因**: 原命名 commons 为误写，正确意图为 commands（命令集）
+
+**影响文件**:
+- `commons/` → `commands/`
+- `rules/project-rules.md`
+- `README.md`
+- `docs/entry/setup.sh`
+
+### 2026-04-06: 补齐 Agent rules.md
+
+**原因**: 架构师（皇帝）未遵守自己定义的规范，导致部分 Agent 缺少 rules.md
+
+**新增文件**:
+- `agents/planner/rules.md`
+- `agents/coder/rules.md`
+- `agents/architect/rules.md`
+- `agents/coordinator/rules.md`
+
+### 2026-04-06: 架构健康检查机制
+
+**原因**: 架构规范缺少自动化检查机制，导致规范被破坏
+
+**新增文件**:
+- `commands/arch-health-check.sh`
+
+**功能**:
+- Agent 目录结构完整性检查
+- 核心目录和文件检查
+- 命名规范检查
+- .claude 目录检查
+- 变更日志检查
+
+### 2026-04-06: setup.sh 能力扩展
+
+**原因**: 原 setup.sh 缺少关键初始化能力
+
+**新增功能**:
+- Agent rules.md 完整性检查
+- .claude 目录初始化
+- commands 脚本权限配置
+- 架构健康检查调用

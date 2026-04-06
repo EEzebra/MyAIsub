@@ -15,7 +15,7 @@
 | 目录 | 用途 | 状态 |
 |------|------|------|
 | `agents/` | 智能体定义（planner/coder/tester/architect/maintainer）— 含 YAML Frontmatter | 已完成 |
-| `commons/` | 命令集（集中存放命令脚本） | 框架已建 |
+| `commands/` | 命令集（集中存放命令脚本） | 框架已建 |
 | `docs/` | 知识库（领域知识、入口文件、地图文件、变更日志） | 已完成 |
 | `hooks/` | 事件驱动 Hook（v2.0：细粒度事件 + 退出码协议） | 已完成 |
 | `rules/` | 规则（AI 规则 + 项目规则 + Frontmatter 标准） | 已完成 |
@@ -92,7 +92,7 @@
 | `README.md` | 入口文件夹索引 | 已完成 |
 | `PROJECT.md` | AI 助手入口配置（核心规则与项目结构总览） | 已完成 |
 | `setup.sh` | 环境初始化脚本（目录检查 + Hook 权限） | 已完成 |
-| `QUICK-START.md` | 快速开始指南（智能体、流程、安全速查） | 已完成 |
+| `QUICKSTART.md` | 快速开始指南（智能体、流程、安全速查） | 已完成 |
 
 ## 知识库索引（docs/）
 

@@ -18,7 +18,7 @@ MyAI/
 │   ├── architect/         #   架构师智能体 — 核心守门人
 │   ├── maintainer/        #   项目维护智能体 — 用户体验引擎
 │   └── coordinator/       #   协调器智能体 — 并行协调器
-├── commons/               # 命令集（集中存放命令脚本）
+├── commands/              # 命令集（集中存放命令脚本）
 ├── docs/                  # 知识库
 │   ├── entry/             #   入口文件夹（远端同步入口）
 │   ├── subagent-integration/ # SubAgent 功能整合文档
@@ -68,6 +68,12 @@ MyAI/
 |------|------|
 | /ralph-loop | 启动自引用迭代循环 |
 
+## 命令脚本
+
+| 命令 | 文件 | 用途 |
+|------|------|------|
+| arch-health-check | commands/arch-health-check.sh | 架构健康检查 |
+
 ## 技能清单
 
 algorithmic-art, brand-guidelines, canvas-design, claude-api, doc-coauthoring, docx, frontend-design, internal-comms, mcp-builder, pdf, planning-with-files, pptx, skill-creator, slack-gif-creator, theme-factory, web-artifacts-builder, webapp-testing, xlsx
@@ -82,5 +88,6 @@ algorithmic-art, brand-guidelines, canvas-design, claude-api, doc-coauthoring, d
 
 | 版本 | 日期 | 变更 |
 |------|------|------|
+| v2.2 | 2026-04-06 | commons 重命名为 commands；补齐 Agent rules.md；新增架构健康检查机制 |
 | v2.1 | 2026-04-05 | 新增 coordinator Agent、Ralph Loop、PreCompact Hook |
 | v2.0 | 2026-04-03 | 升级 Agent Frontmatter、Hook 事件驱动体系 |

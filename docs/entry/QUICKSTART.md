@@ -99,5 +99,5 @@ Phase 1 需求定义 → Phase 2 技能设计 → Phase 3 编码实现
 | 查看架构变更历史 | `docs/arch-changelog.md` |
 | 查看会话进度 | `docs/progress.md` |
 | 查看 Hook 注册表 | `hooks/INDEX.md` |
-| 查看命令集索引 | `commons/INDEX.md` |
+| 查看命令集索引 | `commands/INDEX.md` |
 | 查看可用技能 | `skills/` |

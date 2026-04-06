@@ -18,4 +18,4 @@ bash docs/entry/setup.sh
 | `README.md` | 本文件 | 入口文件夹索引 |
 | `PROJECT.md` | AI 助手入口配置 | 核心规则与项目结构总览，供 AI 助手参考 |
 | `setup.sh` | 环境初始化脚本 | 赋予 Hook 脚本执行权限、检查目录完整性、验证环境依赖 |
-| `QUICK-START.md` | 快速开始指南 | MyAI 核心概念、智能体协作流程、场景流程速查 |
+| `QUICKSTART.md` | 快速开始指南 | MyAI 核心概念、智能体协作流程、场景流程速查 |
